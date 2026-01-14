@@ -1,0 +1,779 @@
+/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+:root {
+  --header-height: 3.25rem;
+
+  --first-color: #5b65f5;
+  --first-color-light: #c4c7f5;
+  --dark-color: #0e1026;
+  --white-color: #fbfbfb;
+
+  --body-font: "Open Sans", sans-serif;
+  --nav-name-font-size: 1.1rem;
+  --normal-font-size: 0.95rem;
+
+  --z-fixed: 100;
+
+  /* hero */
+  --hero-blur: 18px;
+  --hero-dim: 0.18; /* колко да потъмни фона */
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --nav-name-font-size: 1rem;
+    --normal-font-size: 1rem;
+  }
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  font-weight: 600;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.bd-grid {
+  max-width: 1024px;
+  display: grid;
+  grid-template-columns: 100%;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+/*===== HEADER =====*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 1rem;
+  z-index: var(--z-fixed);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* над hero-то: прозрачен + четимост */
+  background: transparent;
+}
+
+/* при скрол: по-чист фон 
+.header.header--scrolled {
+  
+  background: rgba(255, 255, 255, 0.78);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}*/
+
+/* LOGO */
+.header__logo {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+}
+
+.header__logo img {
+    height: 220px;
+    width: auto;
+    display: block;
+    /* padding: 10px; */
+    /* border-radius: 20px; */
+    /* background: rgba(0, 0, 0, 0.45); */
+    /* box-shadow: 0 12px 30px rgb(0 0 0 / 45%); */
+    transition: height 0.3s ease;
+    margin-top: 90px;
+}
+
+/* Burger */
+.header__toggle {
+  font-size: 1.7rem;
+  cursor: pointer;
+
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.header.header--scrolled .header__toggle {
+  color: var(--dark-color);
+  text-shadow: none;
+}
+
+/*===== NAV =====*/
+@media screen and (max-width: 768px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    background-color: #98999b;
+    width: 80%;
+    height: 100vh;
+    padding: 2rem 0;
+    z-index: var(--z-fixed);
+    transition: 0.5s;
+    overflow-y: auto;
+  }
+}
+
+.nav__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.nav__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+.nav__img img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.nav__item {
+  margin-bottom: 2rem;
+}
+
+/* default: на hero (преди скрол) -> бели линкове */
+.nav__link {
+  color: #e7efe9;                 /* меко светло зелено */
+  text-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.25s ease;
+}
+
+.nav__link:hover {
+  color: #2e503a;                 /* тъмно зелено при hover */
+}
+
+
+/*Show menu*/
+.show {
+  left: 0;
+}
+
+/*Active link*/
+.active {
+  color: #2e503a;  
+}
+
+/*=== Dropdown ===*/
+.dropdown__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown__icon {
+  font-size: 1.3rem;
+  transition: 0.5s;
+}
+
+.dropdown__menu {
+  margin: 1rem 0 0 1rem;
+  display: none;
+}
+
+.dropdown__item {
+  margin: 1rem 0;
+}
+
+.dropdown:hover > .dropdown__menu {
+  display: block;
+}
+
+.dropdown:hover .dropdown__icon {
+  transform: rotate(180deg);
+}
+
+/* ===== DESKTOP NAV =====*/
+@media screen and (min-width: 576px) {
+  .nav {
+    width: 288px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    margin: 0;
+  }
+
+  .header {
+    height: calc(var(--header-height) + 1rem);
+  }
+
+  .header__toggle {
+    display: none;
+  }
+
+  .nav {
+    width: 100%;
+    position: static;
+    height: auto;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .nav__content {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .nav__perfil {
+    display: none;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav__item {
+    margin: 0 1.2rem;
+    padding: 1.2rem 0;
+  }
+
+  /* над hero: бели линкове */
+  .nav__link {
+    color: #e7efe9;                 /* меко светло зелено */
+    text-shadow: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: color 0.25s ease;
+  }
+  
+  .nav__link:hover {
+    color: #2e503a;                 /* по-светло, но пак нежно */
+  }
+  
+  /* при скрол: тъмни линкове 
+  .header.header--scrolled .nav__link {
+    color: var(--dark-color);
+    text-shadow: none;
+  }*/
+
+  .header.header--scrolled .nav__link:hover {
+    color: var(--first-color);
+  }
+/*
+  .header.header--scrolled .active {
+    color: var(--first-color);
+  }*/
+
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown__menu {
+    position: fixed;
+    margin: 0;
+    top: calc(var(--header-height) + 1rem);
+    padding: 0.6rem 1.2rem;
+  
+    background: rgba(255, 255, 255, 0.06);   /* почти прозрачно */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  
+    border: 1px solid rgba(47, 62, 52, 0.65); /* тъмно зелено */
+    border-radius: 0.75rem;
+  
+    box-shadow:
+      0 12px 28px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  
+  .dropdown__item {
+    margin: 0.5rem 0;
+  }
+
+  .dropdown__menu .nav__link {
+    color: #fff;
+    text-shadow: none;
+        
+  }
+
+  .dropdown__menu .nav__link:hover {
+    color: #2f3e34;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .bd-grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ===== HERO SECTION ===== */
+.home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  /* да не влиза навигацията върху ръба на hero */
+  padding-top: calc(var(--header-height) + 1rem);
+}
+
+/* blurred background layer */
+.home__bg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--hero-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(var(--hero-blur)) saturate(1.1);
+  transform: scale(1.1);
+}
+
+/* dark overlay + top gradient for nav readability */
+.home::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.18) 28%, rgba(0, 0, 0, 0) 55%),
+    rgba(0, 0, 0, var(--hero-dim));
+}
+
+/* sharp foreground layer */
+.home__fg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--hero-image);
+  background-size: cover;
+  background-position: center;
+}
+
+/* optional content layer if you add text later */
+.home__content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding-top: 5rem;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile tune */
+@media screen and (max-width: 768px) {
+  .home {
+    height: 92vh;
+  }
+
+  .header__logo img {
+    height: 40px;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+    .header__logo img {
+      height: 220px;          /* ⬅️ основната промяна */
+      /*padding: 10px;*/
+      border-radius: 16px;
+      margin-top:90px;
+    }
+  }
+  
+
+/* BOOKING FORM */
+/* ===== BOOKING BAR ===== */
+
+/* ===== BOOKING BAR ===== */
+.booking-bar {
+  padding: 14px;
+  background: #eef2ed;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.booking-form {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.6fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.bf-field {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px;
+  padding: 0 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.bf-field input,
+.bf-field select {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 0.95rem;
+}
+
+.bf-dates {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+  gap: 6px;
+  align-items: center;
+}
+
+.bf-sep {
+  text-align: center;
+  opacity: 0.5;
+}
+
+.bf-btn {
+  height: 40px;
+  padding: 0 24px;
+  background: #a9a39a;
+  color: #fff;
+  font-weight: 700;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.bf-btn:hover {
+  background: #8f8a82;
+}
+
+.bf-error {
+  margin-top: 6px;
+  text-align: center;
+  color: #b00020;
+  font-size: 0.9rem;
+}
+
+/* ===== MODAL ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+
+.modal.is-open {
+  display: block;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.modal__card {
+  position: relative;
+  background: #fff;
+  width: min(520px, 92vw);
+  margin: 8vh auto;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 0;
+  background: #eee;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+}
+
+.modal__subtitle {
+  color: #666;
+  margin-bottom: 14px;
+}
+
+.modal__form {
+  display: grid;
+  gap: 12px;
+}
+
+.modal__row label {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.modal__row input,
+.modal__row textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.18);
+}
+
+.modal__send {
+  padding: 12px;
+  background: #a9a39a;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modal__send:hover {
+  background: #7f796f;  
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .booking-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===== SUCCESS MESSAGE ===== */
+.modal__success {
+  display: none;
+  text-align: center;
+  padding: 24px 10px 10px;
+}
+
+.modal__success.is-visible {
+  display: block;
+}
+
+.success__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: #2e9b4f;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__success h3 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  color: #223;
+}
+
+.modal__success p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+
+/* ===== HEADER SHRINK ON SCROLL ===== */
+
+/* transition за плавност */
+.header__logo img,
+.header__toggle {
+  transition: 
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+/* при scroll */
+.header.header--scrolled .header__logo img {
+  transform: scale(0.35) translateY(-40px);
+  opacity: 0;
+}
+
+.header.header--scrolled .header__toggle {
+  transform: scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+}
+/* ===== DESKTOP: HEADER VISIBLE ONLY AT TOP ===== */
+@media screen and (min-width: 768px) {
+
+  .header {
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  /* при scroll -> скриваме целия header */
+  .header.header--scrolled {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+}
+
+
+/* ===== DATE LABELS ===== */
+.bf-date {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+}
+
+.bf-label {
+  font-size: 0.7rem;
+  color: #666;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+.bf-date input {
+  font-size: 0.95rem;
+}
+
+
+
+
+/* MOBILE */
+@media screen and (max-width: 767px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    background-color: #98999b;
+    width: 80%;
+    height: 100vh;
+    padding: 2rem 0;
+    z-index: var(--z-fixed);
+    transition: 0.5s;
+    overflow-y: auto;
+  }
+}
+
+/* DESKTOP */
+@media screen and (min-width: 768px) {
+  .header__toggle { display: none; }
+  .nav { position: static; width: 100%; height: auto; background: transparent; }
+  .nav__list { display: flex; align-items: center; }
+}
+
+/* MOBILE + TABLET */
+@media screen and (max-width: 1023px) {
+  .header__toggle { display: block; }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    background-color: #98999b;
+    width: min(360px, 82%);
+    height: 100vh;
+    padding: 2rem 0;
+    z-index: var(--z-fixed);
+    transition: 0.5s;
+    overflow-y: auto;
+  }
+
+  .show { left: 0; }
+}
+
+/* TABLET: 768–1023px */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .nav__list {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px 14px;
+  }
+
+  .nav__item {
+    margin: 0;
+    padding: 0.6rem 0;
+  }
+
+  .nav__link {
+    font-size: 0.78rem;     /* по-компактно */
+    letter-spacing: 0.06em; /* малко по-малко spacing */
+  }
+
+  /* dropdown менюто да не е fixed (по-стабилно на таблет) */
+  .dropdown__menu {
+    position: absolute;
+    top: 100%;
+  }
+}
+
+/* ===== ULTRA SMALL (Galaxy Fold 280px) ===== */
+@media screen and (max-width: 320px) {
+  /* предотвратява хоризонтални "изненади" */
+  html, body { overflow-x: hidden; }
+
+  /* HEADER */
+  .header { height: 52px; padding: 0 0.6rem; }
+  .header__logo img { height: 40px; margin-top: 0; }
+  .header__toggle { font-size: 1.35rem; }
+
+  /* HERO */
+  .home { height: 64vh; padding-top: 52px; }
+  .home__bg, .home__fg { background-position: center 25%; }
+
+  /* HERO ARROWS (по-малки, да не пречат) */
+  .hero__btn { width: 30px; height: 30px; font-size: 22px; }
+  .hero__btn--prev { left: 6px; }
+  .hero__btn--next { right: 6px; }
+
+  /* BOOKING BAR – ключовото за Fold */
+  .booking-bar { padding: 8px; }
+
+  /* формата вече е 1 колона (имаш го до 720px), но тук я стягаме */
+  .bf-field { height: 34px; padding: 0 8px; }
+
+  /* ✅ ДАТИТЕ СЕ СТАКВАТ (иначе се режат) */
+  .bf-dates {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .bf-sep { display: none; }
+
+  /* по-малки шрифтове, да се побира всичко */
+  .bf-field input, .bf-field select { font-size: 0.85rem; }
+
+  .bf-btn { height: 36px; font-size: 0.82rem; }
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Deni Guest House | Къща за гости Дени</title>
+  </head>
+
+  <body>
+    <header class="header" id="site-header">
+      <a href="#" class="header__logo" aria-label="Deni Guest House">
+        <img src="img/logo-deni-house.png" alt="Deni Guest House" />
+      </a>
+
+      <i class="bx bx-menu header__toggle" id="header-toggle" aria-label="Menu"></i>
+
+      <nav class="nav" id="nav-menu">
+        <div class="nav__content bd-grid">
+          <a href="#" class="nav__perfil" aria-label="Home">
+            <div class="nav__img">
+              <img src="img/logo-deni-house.png" alt="Deni Guest House" />
+            </div>
+          </a>
+
+          <div class="nav__menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                  <a href="#about" class="nav__link active">За къщата</a>
+                </li>
+              
+                <li class="nav__item dropdown">
+                  <a href="#accommodation" class="nav__link dropdown__link">
+                    Настаняване <i class="bx bx-chevron-down dropdown__icon"></i>
+                  </a>
+              
+                  <ul class="dropdown__menu">
+                    <li class="dropdown__item">
+                      <a href="#rooms" class="nav__link">Стаи</a>
+                    </li>
+                    <li class="dropdown__item">
+                      <a href="#amenities" class="nav__link">Удобства</a>
+                    </li>
+                    <li class="dropdown__item">
+                      <a href="#services" class="nav__link">Услуги</a>
+                    </li>
+                    <li class="dropdown__item">
+                      <a href="#prices" class="nav__link">Цени</a>
+                    </li>
+                  </ul>
+                </li>
+              
+                <li class="nav__item">
+                  <a href="#gallery" class="nav__link">Галерия</a>
+                </li>
+              
+                <li class="nav__item dropdown">
+                  <a href="#area" class="nav__link dropdown__link">
+                    Околности <i class="bx bx-chevron-down dropdown__icon"></i>
+                  </a>
+              
+                  <ul class="dropdown__menu">
+                    <li class="dropdown__item">
+                      <a href="#attractions" class="nav__link">Забележителности</a>
+                    </li>
+                    <li class="dropdown__item">
+                      <a href="#activities" class="nav__link">Активности</a>
+                    </li>
+                    <li class="dropdown__item">
+                      <a href="#food" class="nav__link">Заведения</a>
+                    </li>
+                  </ul>
+                </li>
+              
+                <li class="nav__item">
+                  <a href="#contact" class="nav__link">Контакти</a>
+                </li>
+
+                <li>
+                    <button class="langSwitch btn btn-outline-light d-flex align-items-center gap-2 px-3 py-1">
+                        <img class="flagIcon" src="https://flagcdn.com/24x18/gb.png" alt="EN">
+                       <!--<span class="langText">EN</span>--> 
+                      </button>
+                </li>
+                
+              </ul>
+              
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section
+      class="home"
+      style="--hero-image: url('img/landscape-home-2.png');"
+    >
+      <div class="home__bg" aria-hidden="true"></div>
+
+      <div class="home__fg" aria-hidden="true"></div>
+
+      <!-- ако искаш текст/бутон, оставих място -->
+      <!--
+      <div class="home__content bd-grid">
+        <h1>Къща за гости Дени</h1>
+        <p>Релакс, природа и уют</p>
+        <a class="btn" href="#contact">Резервирай</a>
+      </div>
+      -->
+    </section>
+
+
+
+    <!-- BOOKING BAR -->
+<!-- BOOKING BAR -->
+<!-- BOOKING BAR -->
+<div class="booking-bar">
+    <form class="booking-form" autocomplete="off">
+        <div class="bf-field bf-dates">
+
+            <div class="bf-date">
+              <span class="bf-label">Настаняване</span>
+              <input id="checkin" type="date" aria-label="Настаняване">
+            </div>
+          
+            <span class="bf-sep">›</span>
+          
+            <div class="bf-date">
+              <span class="bf-label">Напускане</span>
+              <input id="checkout" type="date" aria-label="Напускане">
+            </div>
+          
+          </div>
+          
+  
+      <div class="bf-field">
+        <select id="guests" aria-label="Гости">
+          <option value="1">1 възрастен</option>
+          <option value="2" selected>2 възрастни</option>
+          <option value="3">3 възрастни</option>
+          <option value="4">4 възрастни</option>
+          <option value="5">5 възрастни</option>
+          <option value="6+">Повече...</option>
+        </select>
+      </div>
+  
+      <button type="button" class="bf-btn" id="openBookingModal">
+        ЗАВЪРШИ
+      </button>
+    </form>
+  
+    <p class="bf-error" id="bookingError"></p>
+  </div>
+  
+  <!-- MODAL -->
+  <div class="modal" id="bookingModal" aria-hidden="true">
+    <div class="modal__overlay" id="closeBookingModalOverlay"></div>
+  
+    <div class="modal__card" role="dialog" aria-modal="true">
+      <button class="modal__close" id="closeBookingModalBtn">✕</button>
+  
+      <h2>Запитване за резервация</h2>
+      <p class="modal__subtitle">
+        Попълни формата и ще се свържем с теб.
+      </p>
+  
+      <form
+        id="bookingModalForm"
+        class="modal__form"
+        action="https://formspree.io/f/mlggddeb"
+        method="POST"
+      >
+        <!-- Данни от booking bar -->
+        <input type="hidden" name="checkin" id="modalCheckin">
+        <input type="hidden" name="checkout" id="modalCheckout">
+        <input type="hidden" name="guests" id="modalGuests">
+  
+        <input type="hidden" name="_subject" value="Ново запитване за резервация">
+  
+        <div class="modal__row">
+          <label>Име</label>
+          <input type="text" name="name" required>
+        </div>
+  
+        <div class="modal__row">
+          <label>Телефон</label>
+          <input type="tel" name="phone" required>
+        </div>
+  
+        <div class="modal__row">
+          <label>Email</label>
+          <input type="email" name="email" required>
+        </div>
+  
+        <div class="modal__row">
+          <label>Съобщение</label>
+          <textarea name="message" rows="4"></textarea>
+        </div>
+  
+        <button type="submit" class="modal__send">
+          Изпрати
+        </button>
+      </form>
+        <!-- SUCCESS MESSAGE -->
+        <div class="modal__success" id="bookingSuccess">
+            <div class="success__icon">✓</div>
+            <h3>Благодарим ви!</h3>
+            <p>
+              Вашето запитване за резервация беше изпратено успешно.
+              Ще се свържем с вас възможно най-скоро.
+            </p>
+          </div>
+
+  
+    </div>
+  </div>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
